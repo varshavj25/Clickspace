@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Clickspace</title>
-  <!-- Google Fonts: Dancing Script -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Dancing Script & Pacifico for tagline -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -19,14 +19,59 @@
     }
     .title {
       font-family: 'Dancing Script', cursive;
-      font-size: 3.2rem;
+      font-size: 5.2rem; /* Increased by +2rem */
       color: #d16ba5;
       text-align: center;
       margin-top: 38px;
-      margin-bottom: 18px;
+      margin-bottom: 8px;
       letter-spacing: 2px;
       animation: popIn 1.2s;
       user-select: none;
+      font-weight: 900; /* More bold */
+    }
+    .tagline {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.35rem;
+      color: #b85fa6;
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      font-weight: 500;
+      user-select: none;
+      animation: fadeInUp 1.2s;
+    }
+    .time-wasted-box {
+      background: #fff0fa;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(209,107,165,0.10);
+      padding: 18px 30px 18px 30px;
+      margin-bottom: 28px;
+      margin-top: 10px;
+      min-width: 260px;
+      text-align: center;
+      color: #b85fa6;
+      font-size: 1.15rem;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeInUp 1.2s;
+    }
+    .time-wasted-title {
+      font-size: 1.2rem;
+      color: #d16ba5;
+      font-weight: bold;
+      margin-bottom: 2px;
+      letter-spacing: 1px;
+      min-height: 28px;
+    }
+    .time-wasted-time {
+      font-size: 1.5rem;
+      color: #b85fa6;
+      font-weight: bold;
+      margin-bottom: 2px;
+      letter-spacing: 1px;
     }
     @keyframes popIn {
       0% { transform: scale(0.8); opacity: 0;}
@@ -129,11 +174,19 @@
       .gallery { max-width: 100vw; }
       .item { width: 90vw; max-width: 320px; }
       .icon-bar { gap: 18px; }
+      .time-wasted-box { min-width: 180px; font-size: 1rem; }
+      .time-wasted-title { font-size: 1rem; }
+      .time-wasted-time { font-size: 1.1rem; }
     }
   </style>
 </head>
 <body>
   <div class="title">Clickspace</div>
+  <div class="tagline">Your Space. Your Clicks. Your Vibe.</div>
+  <div class="time-wasted-box">
+    <div class="time-wasted-title" id="wasted-title">Welcome! Let's see how long you last...</div>
+    <div class="time-wasted-time" id="time-wasted">Time wasted: 0s</div>
+  </div>
   <div class="icon-bar">
     <button class="icon-btn" onclick="playSound('cozy');showGallery('cozy')">
       <!-- Cozy Backgrounds Icon (Bed) -->
@@ -155,15 +208,15 @@
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#d16ba5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#d16ba5" stroke-width="2"/></svg>
       <span>Space</span>
     </button>
-    <button class="icon-btn" onclick="playSound('random');showGallery('random')">
-      <!-- Random Icon (Dice) -->
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="#d16ba5" stroke-width="2"/><circle cx="8" cy="8" r="1.5"/><circle cx="16" cy="8" r="1.5"/><circle cx="8" cy="16" r="1.5"/><circle cx="16" cy="16" r="1.5"/></svg>
-      <span>Random</span>
-    </button>
     <button class="icon-btn" onclick="playSound('music');showGallery('music')">
       <!-- Music Icon (Note) -->
       <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
       <span>Music</span>
+    </button>
+    <button class="icon-btn" onclick="playSound('fashion');showGallery('fashion')">
+      <!-- Fashion Icon (T-shirt) -->
+      <svg viewBox="0 0 24 24"><path d="M16 3l5 4-2 2-3-2v14h-2V7l-3 2-2-2 5-4z"/></svg>
+      <span>Fashion</span>
     </button>
   </div>
   <div id="gallery" class="gallery"></div>
@@ -171,8 +224,8 @@
   <audio id="audio-animals" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
   <audio id="audio-food" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
   <audio id="audio-space" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
-  <audio id="audio-random" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
   <audio id="audio-music" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
+  <audio id="audio-fashion" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
   <script>
     // Gallery data
     const cozy = [
@@ -195,19 +248,19 @@
       { img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80', caption: 'Galaxy' },
       { img: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=400&q=80', caption: 'Alien Moon' }
     ];
-    const random = [
-      { img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', caption: 'Surprise!' },
-      { img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80', caption: 'Unexpected Animal' },
-      { img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80', caption: 'Random Food' }
-    ];
     const music = [
       { img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80', caption: 'Chill Beats' },
       { img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80', caption: 'Spacey Tunes' },
       { img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', caption: 'Lo-fi Vibes' }
     ];
+    const fashion = [
+      { img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80', caption: 'Street Style' },
+      { img: 'https://images.unsplash.com/photo-1469398715555-76331a6c7fa0?auto=format&fit=crop&w=400&q=80', caption: 'Runway Look' },
+      { img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80', caption: 'Casual Outfit' }
+    ];
 
     function showGallery(category) {
-      const categories = { cozy, animals, food, space, random, music };
+      const categories = { cozy, animals, food, space, music, fashion };
       const images = categories[category] || [];
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = '';
@@ -227,8 +280,8 @@
         animals: 'audio-animals',
         food: 'audio-food',
         space: 'audio-space',
-        random: 'audio-random',
-        music: 'audio-music'
+        music: 'audio-music',
+        fashion: 'audio-fashion'
       };
       // Stop all sounds first
       Object.values(audioMap).forEach(id => {
@@ -237,13 +290,47 @@
         audio.currentTime = 0;
       });
       const audio = document.getElementById(audioMap[category]);
-      if (audio) audio.play();
+      if (audio) {
+        audio.play();
+      }
     }
 
-    // Show default gallery on load
-    window.addEventListener('DOMContentLoaded', () => {
-      showGallery('cozy');
-    });
+    // Sassy captions for every 20 seconds
+    const sassyCaptions = [
+      "Welcome! Let's see how long you last...",
+      "20 seconds in: Still vibing, huh?",
+      "40 seconds: You could've microwaved popcorn by now.",
+      "60 seconds: That's a whole minute of pure procrastination.",
+      "80 seconds: Are you... okay?",
+      "100 seconds: Time flies when you're wasting it.",
+      "120 seconds: You must really love this site.",
+      "140 seconds: At this point, you're part of the furniture.",
+      "160 seconds: Your dedication to wasting time is impressive.",
+      "180 seconds: Still here? Iconic.",
+      "200 seconds: You could've called your mom.",
+      "220 seconds: This is getting serious.",
+      "240 seconds: You deserve a medal for time-wasting.",
+      "260 seconds: The gallery is flattered.",
+      "280 seconds: You are now a Clickspace legend.",
+      "300 seconds: Five minutes! Wow.",
+      "320 seconds: Are you collecting seconds?",
+      "340 seconds: The clock is your only competition.",
+      "360 seconds: Still scrolling? Respect.",
+      "380 seconds: You win. Time is yours."
+    ];
+    let secondsWasted = 0;
+    function updateTimeWasted() {
+      secondsWasted++;
+      let mins = Math.floor(secondsWasted / 60);
+      let secs = secondsWasted % 60;
+      let timeStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+      document.getElementById('time-wasted').textContent = `Time wasted: ${timeStr}`;
+
+      let idx = Math.floor(secondsWasted / 20);
+      if (idx >= sassyCaptions.length) idx = sassyCaptions.length - 1;
+      document.getElementById('wasted-title').textContent = sassyCaptions[idx];
+    }
+    setInterval(updateTimeWasted, 1000);
   </script>
 </body>
 </html>
