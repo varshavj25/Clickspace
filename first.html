@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery Categories</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+    }
+    .buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .buttons button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 6px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .item {
+      width: 300px;
+      margin: 10px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .item p {
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Choose Your Vibe</h1>
+
+  <div class="buttons">
+    <button onclick="showGallery('vibes')">Vibes</button>
+    <button onclick="showGallery('animals')">Animals</button>
+    <button onclick="showGallery('food')">Food</button>
+    <button onclick="showGallery('space')">Space</button>
+    <button onclick="showGallery('random')">Random</button>
+  </div>
+
+  <div id="gallery" class="gallery"></div>
+
+  <script>
+    const vibes = [
+      { img: 'images/vibes1.jpg', caption: 'My Custom Vibe' },
+      { img: 'https://source.unsplash.com/300x200/?aesthetic,light', caption: 'Soft Light' },
+      { img: 'https://source.unsplash.com/300x200/?aesthetic,room', caption: 'Cozy Room' }
+    ];
+
+    const animals = [
+      { img: 'images/animals1.jpg', caption: 'My Pet Goat' },
+      { img: 'https://source.unsplash.com/300x200/?cat,cute', caption: 'Sleepy Cat' },
+      { img: 'https://source.unsplash.com/300x200/?dog,happy', caption: 'Joyful Dog' }
+    ];
+
+    const food = [
+      { img: 'images/food1.jpg', caption: 'Home Cooked Love' },
+      { img: 'https://source.unsplash.com/300x200/?pizza,cheese', caption: 'Cheesy Pizza' },
+      { img: 'https://source.unsplash.com/300x200/?cake,sweet', caption: 'Birthday Cake' }
+    ];
+
+    const space = [
+      { img: 'images/space1.jpg', caption: 'Beyond Earth' },
+      { img: 'https://source.unsplash.com/300x200/?stars,galaxy', caption: 'Starry Night' },
+      { img: 'https://source.unsplash.com/300x200/?planet,moon', caption: 'Alien Moon' }
+    ];
+
+    const random = [
+      { img: 'images/random1.jpg', caption: 'Whatever Feels Right' },
+      { img: 'https://source.unsplash.com/300x200/?abstract,colorful', caption: 'Artistic Vibes' },
+      { img: 'https://source.unsplash.com/300x200/?weird,strange', caption: 'Unexpected Pick' }
+    ];
+
+    function showGallery(category) {
+      const categories = { vibes, animals, food, space, random };
+      const images = categories[category];
+
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+
+      images.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `<img src="${item.img}" alt="${item.caption}"><p>${item.caption}</p>`;
+        gallery.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
