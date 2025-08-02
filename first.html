@@ -208,11 +208,6 @@
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#d16ba5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#d16ba5" stroke-width="2"/></svg>
       <span>Space</span>
     </button>
-    <button class="icon-btn" onclick="playSound('music');showGallery('music')">
-      <!-- Music Icon (Note) -->
-      <svg viewBox="0 0 24 24"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>
-      <span>Music</span>
-    </button>
     <button class="icon-btn" onclick="playSound('fashion');showGallery('fashion')">
       <!-- Fashion Icon (T-shirt) -->
       <svg viewBox="0 0 24 24"><path d="M16 3l5 4-2 2-3-2v14h-2V7l-3 2-2-2 5-4z"/></svg>
@@ -224,51 +219,128 @@
   <audio id="audio-animals" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
   <audio id="audio-food" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
   <audio id="audio-space" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
-  <audio id="audio-music" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
   <audio id="audio-fashion" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
   <script>
     // Gallery data
     const cozy = [
-      { img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80', caption: 'Warm Lights' },
-      { img: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80', caption: 'Cozy Blanket' },
-      { img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', caption: 'Reading Nook' }
+      {
+        img: 'https://pin.it/7jixFdDrA',
+        caption: 'Rainy Reverie',
+        subcaption: 'Let the raindrops set the rhythm.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
+        caption: 'Golden Whimsy',
+        subcaption: 'Bask in the soft glow of a Bridgerton summer.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
+        caption: 'Midnight Peaks',
+        subcaption: 'Starry skies and mountain highs.'
+      }
     ];
     const animals = [
-      { img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80', caption: 'Cute Dog' },
-      { img: 'https://images.unsplash.com/photo-1518715308788-3005759c41c8?auto=format&fit=crop&w=400&q=80', caption: 'Playful Cat' },
-      { img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80', caption: 'Curious Goat' }
+      {
+        img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80',
+        caption: 'Whisker Woods',
+        subcaption: 'Soft animals in soft light — for pure cozy vibes.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1518715308788-3005759c41c8?auto=format&fit=crop&w=400&q=80',
+        caption: 'Wild Whispers',
+        subcaption: 'Gentle nature. Peaceful creatures. Just calm.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+        caption: 'Lazy Creatures Club',
+        subcaption: 'For when you just want to lie down and do nothing.'
+      }
     ];
     const food = [
-      { img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', caption: 'Pizza Night' },
-      { img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80', caption: 'Sweet Cake' },
-      { img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80', caption: 'Home Dinner' }
+      {
+        img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+        caption: 'Warm Cravings',
+        subcaption: 'Comfort food to match your cozy mood.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80',
+        caption: 'Fresh Feels',
+        subcaption: 'Light, colorful, and made for golden-hour picnics.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+        caption: 'Midnight Bites',
+        subcaption: 'Late night food cravings, starry skies, and quiet thoughts.'
+      }
     ];
     const space = [
       { img: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=400&q=80', caption: 'Starry Night' },
       { img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80', caption: 'Galaxy' },
       { img: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=400&q=80', caption: 'Alien Moon' }
     ];
-    const music = [
-      { img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=400&q=80', caption: 'Chill Beats' },
-      { img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80', caption: 'Spacey Tunes' },
-      { img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80', caption: 'Lo-fi Vibes' }
-    ];
     const fashion = [
-      { img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80', caption: 'Street Style' },
-      { img: 'https://images.unsplash.com/photo-1469398715555-76331a6c7fa0?auto=format&fit=crop&w=400&q=80', caption: 'Runway Look' },
-      { img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80', caption: 'Casual Outfit' }
+      {
+        img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80',
+        caption: 'Vintage Whimsy',
+        subcaption: 'Lace, pearls, and powdered dreams.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1469398715555-76331a6c7fa0?auto=format&fit=crop&w=400&q=80',
+        caption: 'Runway Radiance',
+        subcaption: 'Where bold meets beautiful.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
+        caption: 'Cozy Casuals',
+        subcaption: 'Chic comfort for everyday moments.'
+      }
     ];
 
     function showGallery(category) {
-      const categories = { cozy, animals, food, space, music, fashion };
+      const categories = { cozy, animals, food, space, fashion };
       const images = categories[category] || [];
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = '';
+
+      // If "Rainy Reverie" (first cozy option) is clicked, open a new page
+      if (category === 'cozy') {
+        // Only trigger for the first option
+        const rainy = images[0];
+        gallery.innerHTML = '';
+        // Listen for click on the first item
+        images.forEach((item, idx) => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.style.animationDelay = (0.1 + idx * 0.1) + 's';
+          div.innerHTML = `<img src="${item.img}" alt="${item.caption}">
+            <p>
+              <strong>${item.caption}</strong>
+              ${item.subcaption ? `<br><span style="font-size:0.98em;color:#b085b6;">${item.subcaption}</span>` : ''}
+            </p>`;
+          if (idx === 0) {
+            div.style.cursor = "pointer";
+            div.onclick = function() {
+              window.open(
+                "https://www.pexels.com/video/a-woman-walking-on-the-street-while-raining-854043/", // Example rainy street video page
+                "_blank"
+              );
+            };
+          }
+          gallery.appendChild(div);
+        });
+        return;
+      }
+
+      // Default gallery rendering for other categories
       images.forEach((item, idx) => {
         const div = document.createElement('div');
         div.className = 'item';
         div.style.animationDelay = (0.1 + idx * 0.1) + 's';
-        div.innerHTML = `<img src="${item.img}" alt="${item.caption}"><p>${item.caption}</p>`;
+        div.innerHTML = `<img src="${item.img}" alt="${item.caption}">
+          <p>
+            <strong>${item.caption}</strong>
+            ${item.subcaption ? `<br><span style="font-size:0.98em;color:#b085b6;">${item.subcaption}</span>` : ''}
+          </p>`;
         gallery.appendChild(div);
       });
     }
@@ -280,7 +352,6 @@
         animals: 'audio-animals',
         food: 'audio-food',
         space: 'audio-space',
-        music: 'audio-music',
         fashion: 'audio-fashion'
       };
       // Stop all sounds first
