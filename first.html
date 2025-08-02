@@ -302,12 +302,8 @@
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = '';
 
-      // If "Rainy Reverie" (first cozy option) is clicked, open a new page
+      // If "Rainy Reverie" (first cozy option) or "Golden Whimsy" (second cozy option) is clicked, open a new page
       if (category === 'cozy') {
-        // Only trigger for the first option
-        const rainy = images[0];
-        gallery.innerHTML = '';
-        // Listen for click on the first item
         images.forEach((item, idx) => {
           const div = document.createElement('div');
           div.className = 'item';
@@ -321,7 +317,25 @@
             div.style.cursor = "pointer";
             div.onclick = function() {
               window.open(
-                "https://www.pexels.com/video/a-woman-walking-on-the-street-while-raining-854043/", // Example rainy street video page
+                "https://www.pexels.com/video/a-woman-walking-on-the-street-while-raining-854043/",
+                "_blank"
+              );
+            };
+          }
+          if (idx === 1) {
+            div.style.cursor = "pointer";
+            div.onclick = function() {
+              window.open(
+                "https://www.pexels.com/video/a-woman-in-a-field-during-golden-hour-857195/",
+                "_blank"
+              );
+            };
+          }
+          if (idx === 2) {
+            div.style.cursor = "pointer";
+            div.onclick = function() {
+              window.open(
+                "https://www.pexels.com/video/a-timelapse-of-the-milky-way-over-mountains-857195/", // Example starry mountains video
                 "_blank"
               );
             };
