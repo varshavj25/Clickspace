@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clickspace</title>
+  <!-- Google Fonts: Dancing Script & Pacifico for tagline -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ffe0ef 0%, #f9c6e0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+    .title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 5.2rem; /* Increased by +2rem */
+      color: #d16ba5;
+      text-align: center;
+      margin-top: 38px;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+      animation: popIn 1.2s;
+      user-select: none;
+      font-weight: 900; /* More bold */
+    }
+    .tagline {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.35rem;
+      color: #b85fa6;
+      text-align: center;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      font-weight: 500;
+      user-select: none;
+      animation: fadeInUp 1.2s;
+    }
+    .time-wasted-box {
+      background: #fff0fa;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(209,107,165,0.10);
+      padding: 18px 30px 18px 30px;
+      margin-bottom: 28px;
+      margin-top: 10px;
+      min-width: 260px;
+      text-align: center;
+      color: #b85fa6;
+      font-size: 1.15rem;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeInUp 1.2s;
+    }
+    .time-wasted-title {
+      font-size: 1.2rem;
+      color: #d16ba5;
+      font-weight: bold;
+      margin-bottom: 2px;
+      letter-spacing: 1px;
+      min-height: 28px;
+    }
+    .time-wasted-time {
+      font-size: 1.5rem;
+      color: #b85fa6;
+      font-weight: bold;
+      margin-bottom: 2px;
+      letter-spacing: 1px;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0;}
+      80% { transform: scale(1.1);}
+      100% { transform: scale(1); opacity: 1;}
+    }
+    .icon-bar {
+      display: flex;
+      justify-content: center;
+      gap: 38px;
+      margin-bottom: 38px;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.2s;
+    }
+    .icon-btn {
+      background: #fff0fa;
+      border: none;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(209,107,165,0.08);
+      padding: 22px 18px 14px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      min-width: 110px;
+      min-height: 110px;
+      outline: none;
+      position: relative;
+    }
+    .icon-btn:hover, .icon-btn:focus {
+      background: #ffe6f3;
+      transform: translateY(-5px) scale(1.07);
+      box-shadow: 0 4px 18px rgba(209,107,165,0.13);
+    }
+    .icon-btn svg {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 10px;
+      fill: #d16ba5;
+      transition: fill 0.2s;
+    }
+    .icon-btn span {
+      font-size: 1.08rem;
+      color: #b85fa6;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+      user-select: none;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-height: 220px;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 30px;
+    }
+    .item {
+      width: 270px;
+      margin: 12px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(209,107,165,0.10);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      animation: itemAppear 0.7s forwards;
+    }
+    .item:nth-child(1) { animation-delay: 0.1s;}
+    .item:nth-child(2) { animation-delay: 0.2s;}
+    .item:nth-child(3) { animation-delay: 0.3s;}
+    @keyframes itemAppear {
+      to { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    .item img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+    }
+    .item:hover img {
+      transform: scale(1.08) rotate(-2deg);
+    }
+    .item p {
+      padding: 10px;
+      text-align: center;
+      font-size: 17px;
+      background: #fafafa;
+      margin: 0;
+      animation: fadeInUp 0.8s;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .gallery { max-width: 100vw; }
+      .item { width: 90vw; max-width: 320px; }
+      .icon-bar { gap: 18px; }
+      .time-wasted-box { min-width: 180px; font-size: 1rem; }
+      .time-wasted-title { font-size: 1rem; }
+      .time-wasted-time { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="title">Clickspace</div>
+  <div class="tagline">Your Space. Your Clicks. Your Vibe.</div>
+  <div class="time-wasted-box">
+    <div class="time-wasted-title" id="wasted-title">Welcome! Let's see how long you last...</div>
+    <div class="time-wasted-time" id="time-wasted">Time wasted: 0s</div>
+  </div>
+  <div class="icon-bar">
+    <button class="icon-btn" onclick="playSound('cozy');showGallery('cozy')">
+      <!-- Cozy Backgrounds Icon (Bed) -->
+      <svg viewBox="0 0 24 24"><path d="M3 7v10h2v-2h14v2h2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2zm2 0h14v6H5V7zm0 8v-2h14v2H5z"/></svg>
+      <span>Cozy Backgrounds</span>
+    </button>
+    <button class="icon-btn" onclick="playSound('animals');showGallery('animals')">
+      <!-- Animals Icon (Paw) -->
+      <svg viewBox="0 0 24 24"><path d="M17.5 17.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm-11 0c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm2.5-7c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm9 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm-4.5 2c1.93 0 3.5 1.57 3.5 3.5S15.43 19 13.5 19 10 17.43 10 15.5 11.57 12.5 13.5 12.5z"/></svg>
+      <span>Animals</span>
+    </button>
+    <button class="icon-btn" onclick="playSound('food');showGallery('food')">
+      <!-- Food Icon (Pizza) -->
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.08.8 3.98 2.12 5.47l7.88-13.47zm0 2.44l7.88 13.47A9.98 9.98 0 0 0 22 12c0-5.52-4.48-10-10-10zm-1 13.56c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm-4-2c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm8 0c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/></svg>
+      <span>Food</span>
+    </button>
+    <button class="icon-btn" onclick="playSound('space');showGallery('space')">
+      <!-- Space Icon (Planet) -->
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#d16ba5"/><ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="#d16ba5" stroke-width="2"/></svg>
+      <span>Space</span>
+    </button>
+    <button class="icon-btn" onclick="playSound('fashion');showGallery('fashion')">
+      <!-- Fashion Icon (T-shirt) -->
+      <svg viewBox="0 0 24 24"><path d="M16 3l5 4-2 2-3-2v14h-2V7l-3 2-2-2 5-4z"/></svg>
+      <span>Fashion</span>
+    </button>
+  </div>
+  <div id="gallery" class="gallery"></div>
+  <audio id="audio-cozy" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
+  <audio id="audio-animals" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
+  <audio id="audio-food" src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9b6e7b.mp3"></audio>
+  <audio id="audio-space" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
+  <audio id="audio-fashion" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12b7b6b8e0.mp3"></audio>
+  <script>
+    // Gallery data
+    const cozy = [
+      {
+        img: 'https://pin.it/7jixFdDrA',
+        caption: 'Rainy Reverie',
+        subcaption: 'Let the raindrops set the rhythm.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
+        caption: 'Golden Whimsy',
+        subcaption: 'Bask in the soft glow of a Bridgerton summer.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
+        caption: 'Midnight Peaks',
+        subcaption: 'Starry skies and mountain highs.'
+      }
+    ];
+    const animals = [
+      {
+        img: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80',
+        caption: 'Whisker Woods',
+        subcaption: 'Soft animals in soft light — for pure cozy vibes.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1518715308788-3005759c41c8?auto=format&fit=crop&w=400&q=80',
+        caption: 'Wild Whispers',
+        subcaption: 'Gentle nature. Peaceful creatures. Just calm.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+        caption: 'Lazy Creatures Club',
+        subcaption: 'For when you just want to lie down and do nothing.'
+      }
+    ];
+    const food = [
+      {
+        img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+        caption: 'Warm Cravings',
+        subcaption: 'Comfort food to match your cozy mood.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80',
+        caption: 'Fresh Feels',
+        subcaption: 'Light, colorful, and made for golden-hour picnics.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80',
+        caption: 'Midnight Bites',
+        subcaption: 'Late night food cravings, starry skies, and quiet thoughts.'
+      }
+    ];
+    const space = [
+      { img: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=400&q=80', caption: 'Starry Night' },
+      { img: 'https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80', caption: 'Galaxy' },
+      { img: 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=400&q=80', caption: 'Alien Moon' }
+    ];
+    const fashion = [
+      {
+        img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80',
+        caption: 'Vintage Whimsy',
+        subcaption: 'Lace, pearls, and powdered dreams.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1469398715555-76331a6c7fa0?auto=format&fit=crop&w=400&q=80',
+        caption: 'Runway Radiance',
+        subcaption: 'Where bold meets beautiful.'
+      },
+      {
+        img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80',
+        caption: 'Cozy Casuals',
+        subcaption: 'Chic comfort for everyday moments.'
+      }
+    ];
+
+    function showGallery(category) {
+      const categories = { cozy, animals, food, space, fashion };
+      const images = categories[category] || [];
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+
+      // If "Rainy Reverie" (first cozy option) or "Golden Whimsy" (second cozy option) is clicked, open a new page
+      if (category === 'cozy') {
+        images.forEach((item, idx) => {
+          const div = document.createElement('div');
+          div.className = 'item';
+          div.style.animationDelay = (0.1 + idx * 0.1) + 's';
+          div.innerHTML = `<img src="${item.img}" alt="${item.caption}">
+            <p>
+              <strong>${item.caption}</strong>
+              ${item.subcaption ? `<br><span style="font-size:0.98em;color:#b085b6;">${item.subcaption}</span>` : ''}
+            </p>`;
+          if (idx === 0) {
+            div.style.cursor = "pointer";
+            div.onclick = function() {
+              window.open(
+                "https://www.pexels.com/video/a-woman-walking-on-the-street-while-raining-854043/",
+                "_blank"
+              );
+            };
+          }
+          if (idx === 1) {
+            div.style.cursor = "pointer";
+            div.onclick = function() {
+              window.open(
+                "https://www.pexels.com/video/a-woman-in-a-field-during-golden-hour-857195/",
+                "_blank"
+              );
+            };
+          }
+          if (idx === 2) {
+            div.style.cursor = "pointer";
+            div.onclick = function() {
+              window.open(
+                "https://www.pexels.com/video/a-timelapse-of-the-milky-way-over-mountains-857195/", // Example starry mountains video
+                "_blank"
+              );
+            };
+          }
+          gallery.appendChild(div);
+        });
+        return;
+      }
+
+      // Default gallery rendering for other categories
+      images.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.style.animationDelay = (0.1 + idx * 0.1) + 's';
+        div.innerHTML = `<img src="${item.img}" alt="${item.caption}">
+          <p>
+            <strong>${item.caption}</strong>
+            ${item.subcaption ? `<br><span style="font-size:0.98em;color:#b085b6;">${item.subcaption}</span>` : ''}
+          </p>`;
+        gallery.appendChild(div);
+      });
+    }
+
+    // Play sound for each icon
+    function playSound(category) {
+      const audioMap = {
+        cozy: 'audio-cozy',
+        animals: 'audio-animals',
+        food: 'audio-food',
+        space: 'audio-space',
+        fashion: 'audio-fashion'
+      };
+      // Stop all sounds first
+      Object.values(audioMap).forEach(id => {
+        const audio = document.getElementById(id);
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      const audio = document.getElementById(audioMap[category]);
+      if (audio) {
+        audio.play();
+      }
+    }
+
+    // Sassy captions for every 20 seconds
+    const sassyCaptions = [
+      "Welcome! Let's see how long you last...",
+      "20 seconds in: Still vibing, huh?",
+      "40 seconds: You could've microwaved popcorn by now.",
+      "60 seconds: That's a whole minute of pure procrastination.",
+      "80 seconds: Are you... okay?",
+      "100 seconds: Time flies when you're wasting it.",
+      "120 seconds: You must really love this site.",
+      "140 seconds: At this point, you're part of the furniture.",
+      "160 seconds: Your dedication to wasting time is impressive.",
+      "180 seconds: Still here? Iconic.",
+      "200 seconds: You could've called your mom.",
+      "220 seconds: This is getting serious.",
+      "240 seconds: You deserve a medal for time-wasting.",
+      "260 seconds: The gallery is flattered.",
+      "280 seconds: You are now a Clickspace legend.",
+      "300 seconds: Five minutes! Wow.",
+      "320 seconds: Are you collecting seconds?",
+      "340 seconds: The clock is your only competition.",
+      "360 seconds: Still scrolling? Respect.",
+      "380 seconds: You win. Time is yours."
+    ];
+    let secondsWasted = 0;
+    function updateTimeWasted() {
+      secondsWasted++;
+      let mins = Math.floor(secondsWasted / 60);
+      let secs = secondsWasted % 60;
+      let timeStr = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+      document.getElementById('time-wasted').textContent = `Time wasted: ${timeStr}`;
+
+      let idx = Math.floor(secondsWasted / 20);
+      if (idx >= sassyCaptions.length) idx = sassyCaptions.length - 1;
+      document.getElementById('wasted-title').textContent = sassyCaptions[idx];
+    }
+    setInterval(updateTimeWasted, 1000);
+  </script>
+</body>
+</html>
