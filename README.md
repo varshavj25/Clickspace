@@ -1,26 +1,29 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [Project Name] 🎯
+# Clickspace 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Lunarchs
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: Varsha V J - College of Engineering Attingal
+- Member 2: Lakshmi G Nair - College of Engineering Attingal
+
 
 ### Project Description
-[2-3 lines about what your project does]
+Clickscape is a playful, beautifully useless website that reacts to user clicks with quirky messages, sounds, and smooth scrolling.
+It has no goal — just a strangely satisfying experience designed for fun, curiosity, and creative expression.
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+People have too many meaningful interactions online. We wanted to fix that.
+So we created a space where you can click endlessly, achieve absolutely nothing, and still feel oddly fulfilled.
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+We built a gloriously useless website where every click rewards you with nonsense — quirky messages, soothing sounds, and smooth scrolling.
+It’s interactive, it’s satisfying, it does absolutely nothing — and that’s the point.
 
 ## Technical Details
 ### Technologies/Components Used
